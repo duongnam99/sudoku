@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Sudoku</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="pt-5 col-lg-6" style="padding: 0;">
+				<table class="gird">
+					<tr>
+						<td class="gird-one">
+							<table>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-1"></div></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-2"></div></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-3"></div></td>
+								</tr>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-10"></div></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-11"></div></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-12"></div></td>
+								</tr>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-19"></div></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-20"></div></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-21"></div></td>
+								</tr>
+							</table>
+						</td>
+						<td class="gird-two">
+							<table>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-4"></div></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-5"></div></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-6"></div></td>
+								</tr>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-13"></div></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-14"></div></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-15"></div></td>
+								</tr>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-22"></div></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-23"></div></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-24"></div></td>
+								</tr>
+							</table>
+						</td>
+						<td class="gird-one">
+							<table>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-7"></div></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-8"></div></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-9"></div></td>
+								</tr>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-16"></div></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-17"></div></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-18"></div></td>
+								</tr>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-25"></div></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-26"></div></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-27"></div></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td class="gird-two">
+							<table>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-28"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-29"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-30"></td>
+								</tr>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-37"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-38"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-39"></td>
+								</tr>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-46"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-47"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-48"></td>
+								</tr>
+							</table>
+						</td>
+						<td class="gird-one">
+							<table>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-31"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-32"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-33"></td>
+								</tr>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-40"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-41"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-42"></td>
+								</tr>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-49"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-50"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-51"></td>
+								</tr>
+							</table>
+						</td>
+						<td class="gird-two">
+							<table>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-34"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-35"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-36"></td>
+								</tr>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-43"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-44"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-45"></td>
+								</tr>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-52"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-53"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-54"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td class="gird-one">
+							<table>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-55"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-56"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-57"></td>
+								</tr>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-64"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-65"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-66"></td>
+								</tr>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-73"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-74"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-75"></td>
+								</tr>
+							</table>
+						</td>
+						<td class="gird-two">
+							<table>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-58"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-59"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-60"></td>
+								</tr>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-67"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-68"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-69"></td>
+								</tr>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-76"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-77"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-78"></td>
+								</tr>
+							</table>
+						</td>
+						<td class="gird-one">
+							<table>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-61"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-62"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-63"></td>
+								</tr>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-70"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-71"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-72"></td>
+								</tr>
+								<tr>
+									<td><input class="cell text-center font-weight-bold" id="cell-79"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-80"></td>
+									<td><input class="cell text-center font-weight-bold" id="cell-81"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+		<div class="col-lg-6 pt-5">
+			<div class="col-lg-6">
+				
+				 <div class="input-group mb-2">
+				 	 <div class="custom-control custom-radio mx-2">
+						  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" checked="checked" value="46">
+						  <label class="custom-control-label" for="customRadio1">Easy</label>
+						</div>
+						<div class="custom-control custom-radio mx-2">
+						  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="55">
+						  <label class="custom-control-label" for="customRadio2">Normal</label>
+					</div>
+						<div class="custom-control custom-radio mx-2">
+						  <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="61">
+						  <label class="custom-control-label" for="customRadio3">Hard</label>
+					</div>
+
+					
+
+        		<div class="input-group-prepend form-group my-2">
+        			<button type="button" class="btn btn-outline-info" id="create_sudoku" onclick ="showGame()">Tạo Sudoku</button>
+        			  
+          			<div class="input-group-text ml-3">Sleep</div>
+          			<input type="text" name="" id="sleep">
+          			<button type="button" class="btn btn-outline-success" onclick= "showSolve()">Giải Sudoku</button>
+        		</div>
+				
+				<!-- <button type="button" onclick="tops();">Stop</button> -->
+			</div>
+		</div>
+	</div>
+
+</div>
+	<script src="js/js.js"></script>
+	<!-- <script src="js/js2.js"></script> -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script>
+		$('#create_sudoku').click(function (e) {
+    // custom handling here
+    e.preventDefault();
+});
+	</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+.cell{
+	width: 50px;
+	height: 50px;
+	padding: 10px;
+    margin: 0px;
+    border: 0px solid #d8d8d8;
+    /*background-color: #DA0603;*/
+    font-size: 1.5rem;
+}
+input{
+	/*margin :1rem;*/
+	/*border-radius: 10px;*/
+}
+
+.gird-two .cell{
+	border: 0px solid #d8d8d8;
+    /*background-color: #C40502;*/
+    padding: 5px;
+}
+.gird-two{
+	padding: 0;
+	margin: 0;
+}
+.gird-two td{
+	padding:0;
+	border: 1px solid #d8d8d8;
+}
+.gird-one{
+	padding:0;
+}
+.gird-one td{
+	padding:0;
+	border: 1px solid #d8d8d8;
+}
+.gird{
+	box-shadow: 2px 2px 2px 2px gray;
+}
+/*#slclevel{
+	border-radius: 5px;
+	width: 500px;
+	/*height: 5rem;*/
+}*/
