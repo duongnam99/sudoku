@@ -240,6 +240,8 @@
 		$('#create_sudoku').click(function(){
 			$('#btn-stop').prop('disabled','true');
 			$('#btn-check').prop('disabled','true');
+			$('#solves').removeAttr('disabled');
+
 		});
 		$('#btn-check').click(function(){
 			$('#btn-check').prop('disabled','true');

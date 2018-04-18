@@ -1,11 +1,5 @@
-// const N= 9;
-// const UNASSIGNED =0;
-
-// var sudoku = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-// console.log(solve(sudoku));
 	 let sudokus = new Array();
 	 let test ='';
-
 	 var check;
 	 var check_stop;
 
@@ -245,17 +239,25 @@ async function showSolve(){
 			x.classList.remove('checks');
 			x.value = sudokus[cell];
 			await sleep(time);
-			// arr.shift();
-			// // delete arr[]
-			// console.log(arr);
 
 
+			}	
 		}
-
-
-		
 	}
-	alert('Done!!');
+	var tmp = true;
+	await sleep(10);
+	for(let cell =0;cell<81;cell++){
+		var x =document.getElementById(`cell-${cell+1}`);
+		if(x.value ==''||x.value==0){
+			tmp = false;
+		}
+	}
+	if(tmp){
+		alert('Done!!');
+		var slove = document.getElementById('solves');
+		var pause = document.getElementById('btn-stop');
+		slove.setAttribute('disabled', 'true');
+		pause.setAttribute('disabled', 'true');
 
 	}
 
@@ -267,6 +269,7 @@ function continued(){
 	showSolve();
 }
 function checks(){
+	// console.log(sudokus);
 	let flag = true;
 	let arr_check = new Array();
 	for(let cell =0 ; cell <81;cell++){
@@ -281,12 +284,16 @@ function checks(){
 	for(let cell =0;cell<81;cell++){
 		var x =document.getElementById(`cell-${cell+1}`);
 		let checkss = parseInt(x.value);
+		if (!isPossibleNumber(cell,checkss,sudokus)){
+					flag=false;
+				}
 		if(arr_check[cell]==0){	
 				flag=false;	
 				x.classList.add('checks');
 		}else if(arr.includes(cell)){
 				arr_check[cell]=0;
 				let test = document.getElementById(`cell-${cell+1}`);
+				
 				if(!isPossibleNumber(cell,checkss,arr_check)){
 					flag=false;
 					test.classList.add('checks');
@@ -299,6 +306,7 @@ function checks(){
 
 
 	}
+
 	if (flag) {
 	alert('Chúc mừng bạn đã giải đúng');
 	}
@@ -311,12 +319,5 @@ function checks(){
  // if()
  return true;
  }
- // gioi han ky tu:
-//  function checkNumber(){
-//  	for(let i=0;i<81;i++){
-// 	let test = document.getElementById(`cell-${i+1}`);
-// 	console.log(test.value);
-// }
-//  }
 
 
