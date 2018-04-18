@@ -238,7 +238,7 @@ async function showSolve(){
 				// await sleep(0);
 			}
 		var x =document.getElementById(`cell-${cell+1}`);
-		if(arr.includes(cell)&&x.value==''){
+		if(arr.includes(cell)&&x.value!=sudokus[cell]){
 			x.classList.remove('checks');
 			x.value = sudokus[cell];
 			await sleep(time);
@@ -312,8 +312,6 @@ async function checks(){
 		}
 	}
 	await sleep(10);
-	// console.log(checkAll(arr_check));
-	// console.log(arr_check);
 	var slove = document.getElementById('solves');
 	if (checkAll(arr_check)&&flag) {
 		await sleep(10);
