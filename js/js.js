@@ -2,6 +2,7 @@
 	 let test ='';
 	 var check;
 	 var check_stop;
+	 var arr_puzzle = new Array();
 
 function returnRow(cell) {
 	return Math.floor(cell / 9);
@@ -201,8 +202,11 @@ function showGame(){
 	for(let row=0;row<81;row++){
 				var x =document.getElementById(`cell-${row+1}`);
 				if( sudokus[row]!=0 &&x!=null && !arr.includes(row)){
+					arr_puzzle[row]= sudokus[row];
 					x.setAttribute("disabled","true");
 					x.value = sudokus[row];
+				}else{
+					arr_puzzle[row]=0;
 				}
 		}
 	for(let row =0;row<81;row++){
@@ -211,11 +215,39 @@ function showGame(){
 			x.classList.remove('checks');
 		// }
 	}
+
+
 }
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 async function showSolve(){
+	// console.log(sudokus);
+	try{
+		sudokus = solve(arr_puzzle);
+		// console.log(solve(arr_puzzle));
+	}catch(err){
+		alert(' Đề Sai');
+		resets();
+		return;
+	}
+	
+	
+	// console.log(solve(arr_puzzle).slice());
+	// console.log(arr_puzzle);
+	// if(solve(arr_puzzle)){
+
+		// console.log(solve(arr_puzzle));	
+	// sudokus = solve(arr_puzzle).slice();
+
+// }else{
+// 	alert('De sai');
+// 	return;
+// }
+	
+	// console.log(solve(arr_puzzle));
+	// console.log(sudokus);
 	check = false;
 	check_stop=false;
 	let time =0;
@@ -223,6 +255,7 @@ async function showSolve(){
 	// arr=makeNewGame(level);
 	let input = document.getElementById('sleep');
 	time = input.value*1000;
+
 	if(sudokus.length<1){
 		alert('Bạn chưa tạo trò chơi...');
 	}else{
@@ -235,7 +268,6 @@ async function showSolve(){
 				break;
 			}else if(curen>-1){
 				cell=curen;
-				// await sleep(0);
 			}
 		var x =document.getElementById(`cell-${cell+1}`);
 		if(arr.includes(cell)&&x.value!=sudokus[cell]){
@@ -262,8 +294,7 @@ async function showSolve(){
 		slove.setAttribute('disabled','true');
 
 	}
-	// checks();
-
+	// console.log(solve(arr_puzzle));
 }
 function stops(){
 	check_stop=true;
@@ -297,6 +328,7 @@ async function checks(){
 	for(let cell =0;cell<81;cell++){
 		var x =document.getElementById(`cell-${cell+1}`);
 		let checkss = parseInt(x.value);
+		arr_puzzle[cell]=arr_check[cell];
 		if(arr_check[cell]==0){		
 				x.classList.add('checks');
 		}else if(arr.includes(cell)){
@@ -305,8 +337,10 @@ async function checks(){
 				if(!isPossibleNumber(cell,checkss,arr_check)){
 					flag=false;
 					test.classList.add('checks');
+					arr_puzzle[cell]= 0;
 				}else{
 					test.classList.remove('checks');
+
 				}
 				arr_check[cell]= checkss;
 		}
@@ -322,7 +356,8 @@ async function checks(){
 	}else{
 		slove.setAttribute('disabled','true');
 	}
-	console.log(arr_check);
+	// console.log(arr_puzzle_new);
+	// console.log(arr_check);
 }
  function isNumberKey(evt)
  {
@@ -336,6 +371,7 @@ async function checks(){
  		let x = document.getElementById(`cell-${cell+1}`);
  		if(arr.includes(cell)){
  			x.value='';
+ 			x.classList.remove('checks');
  		}
  	}
  }
