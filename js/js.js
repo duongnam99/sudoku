@@ -219,6 +219,7 @@ async function showSolve(){
 	check = false;
 	check_stop=false;
 	let time =0;
+	let curen=-1;
 	// arr=makeNewGame(level);
 	let input = document.getElementById('sleep');
 	time = input.value*1000;
@@ -230,17 +231,17 @@ async function showSolve(){
 				return;
 			}
 			if(check_stop== true){
-				await sleep(100000000);
-			}else{
-				await sleep(0);
+				curen = cell;
+				break;
+			}else if(curen>-1){
+				cell=curen;
+				// await sleep(0);
 			}
 		var x =document.getElementById(`cell-${cell+1}`);
-		if(arr.includes(cell)){
+		if(arr.includes(cell)&&x.value==''){
 			x.classList.remove('checks');
 			x.value = sudokus[cell];
 			await sleep(time);
-
-
 			}	
 		}
 	}

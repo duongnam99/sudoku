@@ -243,6 +243,7 @@
 	<script>
 		$('#solves').click(function(){
 			$('#btn-stop').removeAttr('disabled');
+			$('#solves').prop('disabled','true');
 		});
 		$('#btn-stop').click(function(){
 			$('#btn-check').removeAttr('disabled');
@@ -256,6 +257,8 @@
 		});
 		$('#btn-ktra').click(function(){
 			$('#solves').removeAttr('disabled');
+			$('#btn-stop').prop('disabled','true');
+			$('#btn-check').prop('disabled','true'); 
 
 		});
 		$('#btn-check').click(function(){
