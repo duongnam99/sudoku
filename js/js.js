@@ -242,11 +242,13 @@ async function showSolve(){
 			}
 		var x =document.getElementById(`cell-${cell+1}`);
 		if(arr.includes(cell)&&x.value==''){
+			x.classList.remove('checks');
 			x.value = sudokus[cell];
 			await sleep(time);
 			// arr.shift();
 			// // delete arr[]
 			// console.log(arr);
+
 
 		}
 
