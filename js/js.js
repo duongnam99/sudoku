@@ -6,6 +6,9 @@
 	 let sudokus = new Array();
 	 let test ='';
 
+	 var check;
+	 var check_stop;
+
 function returnRow(cell) {
 	return Math.floor(cell / 9);
 }
@@ -41,9 +44,9 @@ function isPossibleBlock(number,block,sudoku){
 	return true;
 }
 function isPossibleNumber(cell,number,sudoku){
-var row =returnRow(cell);
-var col= returnCol(cell);
-var block =  returnBlock(cell);
+	var row =returnRow(cell);
+	var col= returnCol(cell);
+	var block =  returnBlock(cell);
 return isPossibleRow(number,row,sudoku)&&isPossibleCol(number,col,sudoku)&&isPossibleBlock(number,block,sudoku);
 }
 function isCorrectRow(row,sudoku) {
@@ -180,6 +183,8 @@ if (document.getElementById('customRadio1').checked) {
 let level= rate_value;
 let arr=makeNewGame(level);
 function showGame(){
+		check = true;
+
 		if (document.getElementById('customRadio1').checked) {
 		  rate_value = document.getElementById('customRadio1').value;
 		}else if (document.getElementById('customRadio2').checked) {
@@ -206,11 +211,19 @@ function showGame(){
 					x.value = sudokus[row];
 				}
 		}
+	for(let row =0;row<81;row++){
+		var x = document.getElementById(`cell-${row+1}`);
+		// if(arr.includes(row)){
+			x.classList.remove('checks');
+		// }
+	}
 }
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 async function showSolve(){
+	check = false;
+	check_stop=false;
 	let time =0;
 	// arr=makeNewGame(level);
 	let input = document.getElementById('sleep');
@@ -218,15 +231,90 @@ async function showSolve(){
 	if(sudokus.length<1){
 		alert('Bạn chưa tạo trò chơi...');
 	}else{
-		for(let cell =0;cell<81;cell++){
+		for(let cell=0;cell<81;cell++){
+			if(check) {
+				return;
+			}
+			if(check_stop== true){
+				await sleep(100000000);
+			}else{
+				await sleep(0);
+			}
 		var x =document.getElementById(`cell-${cell+1}`);
-		if(arr.includes(cell)){
+		if(arr.includes(cell)&&x.value==''){
 			x.value = sudokus[cell];
 			await sleep(time);
+			// arr.shift();
+			// // delete arr[]
+			// console.log(arr);
+
 		}
+
+
 		
 	}
+	alert('Done!!');
+
 	}
 
 }
+function stops(){
+	check_stop=true;
+}
+function continued(){
+	showSolve();
+}
+function checks(){
+	let flag = true;
+	let arr_check = new Array();
+	for(let cell =0 ; cell <81;cell++){
+		var x =document.getElementById(`cell-${cell+1}`);
+		number = x.value;
+		if(number!=''){
+					arr_check[cell] = parseInt(number);
+				}else{
+					arr_check[cell]=0;
+				}
+	}
+	for(let cell =0;cell<81;cell++){
+		var x =document.getElementById(`cell-${cell+1}`);
+		let checkss = parseInt(x.value);
+		if(arr_check[cell]==0){	
+				flag=false;	
+				x.classList.add('checks');
+		}else if(arr.includes(cell)){
+				arr_check[cell]=0;
+				let test = document.getElementById(`cell-${cell+1}`);
+				if(!isPossibleNumber(cell,checkss,arr_check)){
+					flag=false;
+					test.classList.add('checks');
+				}else{
+					flag = true;
+					test.classList.remove('checks');
+				}
+				arr_check[cell]= checkss;
+		}
+
+
+	}
+	if (flag) {
+	alert('Chúc mừng bạn đã giải đúng');
+	}
+}
+ function isNumberKey(evt)
+ {
+ var charCode = (evt.which) ? evt.which : event.keyCode
+ if (charCode > 31 && (charCode < 49 || charCode > 57))
+ 	return false;
+ // if()
+ return true;
+ }
+ // gioi han ky tu:
+//  function checkNumber(){
+//  	for(let i=0;i<81;i++){
+// 	let test = document.getElementById(`cell-${i+1}`);
+// 	console.log(test.value);
+// }
+//  }
+
 

@@ -35,8 +35,6 @@ input{
 .gird{
 	box-shadow: 2px 2px 2px 2px gray;
 }
-/*#slclevel{
-	border-radius: 5px;
-	width: 500px;
-	/*height: 5rem;*/
-}*/
+.checks{
+	background-color: red;
+}
