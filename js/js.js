@@ -235,7 +235,7 @@ async function showSolve(){
 				await sleep(0);
 			}
 		var x =document.getElementById(`cell-${cell+1}`);
-		if(arr.includes(cell)&&x.value==''){
+		if(arr.includes(cell)){
 			x.classList.remove('checks');
 			x.value = sudokus[cell];
 			await sleep(time);
