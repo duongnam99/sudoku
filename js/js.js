@@ -210,6 +210,11 @@ function showGame(){
 				}
 		}
 	for(let row =0;row<81;row++){
+		if(arr.includes(row)){
+			arr_puzzle[row]=sudokus[row];
+		}else{
+			arr_puzzle[row]=0;
+		}
 		var x = document.getElementById(`cell-${row+1}`);
 		// if(arr.includes(row)){
 			x.classList.remove('checks');
@@ -225,7 +230,8 @@ function sleep(ms) {
 async function showSolve(){
 	// console.log(sudokus);
 	try{
-		sudokus = solve(arr_puzzle);
+		solve(arr_puzzle);
+		sudokus = solve(arr_puzzle).slice();
 		// console.log(solve(arr_puzzle));
 	}catch(err){
 		alert(' Đề Sai');
@@ -372,6 +378,7 @@ async function checks(){
  		if(arr.includes(cell)){
  			x.value='';
  			x.classList.remove('checks');
+ 			// arr_puzzle[cell]=0;
  		}
  	}
  }
