@@ -233,17 +233,14 @@
 	<script>
 		$('#solves').click(function(){
 			$('#btn-stop').removeAttr('disabled');
-
 		});
 		$('#btn-stop').click(function(){
 			$('#btn-check').removeAttr('disabled');
-			$('#solves').prop('disabled','true');
 		});
 		$('#create_sudoku').click(function(){
 			$('#btn-stop').prop('disabled','true');
-			$('#btn-check').prop('disabled','true');
+			$('#btn-check').prop('disabled','true'); 
 			$('#solves').removeAttr('disabled');
-
 		});
 		$('#btn-check').click(function(){
 			$('#btn-check').prop('disabled','true');

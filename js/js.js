@@ -311,10 +311,11 @@ async function checks(){
 		}
 	}
 	await sleep(10);
-	console.log(checkAll(arr_check));
-	console.log(arr_check);
+	// console.log(checkAll(arr_check));
+	// console.log(arr_check);
 	var slove = document.getElementById('solves');
 	if (checkAll(arr_check)&&flag) {
+		await sleep(10);
 	alert('Chúc mừng bạn đã giải đúng');
 	}else if(!checkAll(arr_check)){
 		
@@ -330,6 +331,3 @@ async function checks(){
  	return false;
  return true;
  }
-
-
-
