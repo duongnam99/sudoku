@@ -212,7 +212,7 @@
         				<div class="input-group-prepend form-group my-2 col-lg-12">
         					<button type="button" class="btn btn-outline-info" id="create_sudoku" onclick ="showGame()">New Game</button>
           					<div class="input-group-text ml-3">Sleep(s)</div>
-          					<input type="text" name="" id="sleep">
+          					<input type="text" name="" id="sleep" value="0">
           					<button type="button" class="btn btn-outline-success" onclick= "showSolve()" id="solves">Solve</button>
           				   
         				</div>
@@ -220,11 +220,21 @@
         					 <button type="button" class="btn btn-outline-danger mr-2" id="btn-stop" onclick="stops()" disabled>Pause</button>
         					<button type="button" class="btn btn-outline-primary" onclick="continued()" id="btn-check" disabled>Continue</button>
 				
-							<button type="button" onclick="checks();" class="btn btn-outline-warning mx-2">Check</button>
+							<button type="button" onclick="checks();" class="btn btn-outline-warning mx-2" disabled id="btn-ktra">Check</button>
         				</div>
 			</div>
 		</div>
+		<div class="col-lg-12 alert alert-success ml-auto">
+		<h1>Hướng dẫn : </h1>
+		<p>Chọn<span class="badge badge-secondary">New Game</span> để bắt đầu trò chơi</p>
+		<p><span class="badge badge-secondary">Solve</span> auto giải những ô còn trống</p>
+		<p><span class="badge badge-secondary">Pause</span> dừng tiến trình giải</p>
+		<p><span class="badge badge-secondary">Continue</span> tiếp tục tiến trình giải</p>
+		<p><span class="badge badge-secondary">Check</span>Kiểm tra giải đúng hoặc kiểm tra ô nào chưa được điền</p>
+		<p><span class="badge badge-danger">Lưu ý :</span> Chọn <span class="badge badge-secondary">Check</span> sau đó chọn <span class="badge badge-secondary">Solve</span> nếu bạn muốn tự động giải những ô còn trống</p>
 	</div>
+	</div>
+
 
 </div>
 	<script src="js/js.js"></script>
@@ -241,6 +251,8 @@
 			$('#btn-stop').prop('disabled','true');
 			$('#btn-check').prop('disabled','true'); 
 			$('#solves').removeAttr('disabled');
+			
+			$('#btn-ktra').removeAttr('disabled');
 		});
 		$('#btn-check').click(function(){
 			$('#btn-check').prop('disabled','true');
