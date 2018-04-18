@@ -252,14 +252,16 @@ async function showSolve(){
 			tmp = false;
 		}
 	}
+		
 	if(tmp){
 		alert('Done!!');
-		var slove = document.getElementById('solves');
 		var pause = document.getElementById('btn-stop');
-		slove.setAttribute('disabled', 'true');
 		pause.setAttribute('disabled', 'true');
+		var slove = document.getElementById('solves');
+		slove.setAttribute('disabled','true');
 
 	}
+	// checks();
 
 }
 function stops(){
@@ -268,13 +270,23 @@ function stops(){
 function continued(){
 	showSolve();
 }
-function checks(){
-	// console.log(sudokus);
+function checkAll(sudoku){
+	for(let cell = 0; cell<81;cell++){
+		var x =document.getElementById(`cell-${cell+1}`);
+		let checkss = parseInt(x.value);
+		if(sudoku[cell]==0||sudoku[cell]==''){
+			return false;
+		}
+	}
+	return true;
+}
+async function checks(){
 	let flag = true;
 	let arr_check = new Array();
 	for(let cell =0 ; cell <81;cell++){
 		var x =document.getElementById(`cell-${cell+1}`);
 		number = x.value;
+		x.classList.remove('checks');
 		if(number!=''){
 					arr_check[cell] = parseInt(number);
 				}else{
@@ -284,31 +296,31 @@ function checks(){
 	for(let cell =0;cell<81;cell++){
 		var x =document.getElementById(`cell-${cell+1}`);
 		let checkss = parseInt(x.value);
-		if (!isPossibleNumber(cell,checkss,sudokus)){
-					flag=false;
-				}
-		if(arr_check[cell]==0){	
-				flag=false;	
+		if(arr_check[cell]==0){		
 				x.classList.add('checks');
 		}else if(arr.includes(cell)){
 				arr_check[cell]=0;
-				let test = document.getElementById(`cell-${cell+1}`);
-				
+				let test = document.getElementById(`cell-${cell+1}`);				
 				if(!isPossibleNumber(cell,checkss,arr_check)){
 					flag=false;
 					test.classList.add('checks');
 				}else{
-					flag = true;
 					test.classList.remove('checks');
 				}
 				arr_check[cell]= checkss;
 		}
-
-
 	}
-
-	if (flag) {
+	await sleep(10);
+	console.log(checkAll(arr_check));
+	console.log(arr_check);
+	var slove = document.getElementById('solves');
+	if (checkAll(arr_check)&&flag) {
 	alert('Chúc mừng bạn đã giải đúng');
+	}else if(!checkAll(arr_check)){
+		
+		slove.removeAttribute('disabled');
+	}else{
+		slove.setAttribute('disabled','true');
 	}
 }
  function isNumberKey(evt)
@@ -316,8 +328,8 @@ function checks(){
  var charCode = (evt.which) ? evt.which : event.keyCode
  if (charCode > 31 && (charCode < 49 || charCode > 57))
  	return false;
- // if()
  return true;
  }
+
 
 
