@@ -315,13 +315,14 @@ async function checks(){
 	var slove = document.getElementById('solves');
 	if (checkAll(arr_check)&&flag) {
 		await sleep(10);
-	alert('Chúc mừng bạn đã giải đúng');
+	alert('Chúc mừng bạn đã giải đúng');	
 	}else if(!checkAll(arr_check)){
 		
 		slove.removeAttribute('disabled');
 	}else{
 		slove.setAttribute('disabled','true');
 	}
+	console.log(arr_check);
 }
  function isNumberKey(evt)
  {
@@ -329,4 +330,12 @@ async function checks(){
  if (charCode > 31 && (charCode < 49 || charCode > 57))
  	return false;
  return true;
+ }
+ function resets(){
+ 	for(let cell=0;cell<81;cell++){
+ 		let x = document.getElementById(`cell-${cell+1}`);
+ 		if(arr.includes(cell)){
+ 			x.value='';
+ 		}
+ 	}
  }
