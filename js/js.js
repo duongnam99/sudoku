@@ -2,7 +2,8 @@
 	 let test ='';
 	 var check;
 	 var check_stop;
-	 var arr_puzzle = new Array();
+	 // var arr_puzzle = new Array();
+	 var arr_puzzle_new = new Array();
 
 function returnRow(cell) {
 	return Math.floor(cell / 9);
@@ -167,19 +168,9 @@ function makeNewGame(level){
 function compare(a,b){
 	return a-b;
 }
-let rate_value;
-if (document.getElementById('customRadio1').checked) {
-  rate_value = document.getElementById('customRadio1').value;
-}else if (document.getElementById('customRadio2').checked) {
-  rate_value = document.getElementById('customRadio2').value;
-} else if (document.getElementById('customRadio3').checked) {
-  rate_value = document.getElementById('customRadio3').value;
-}	
-let level= rate_value;
-let arr=makeNewGame(level);
-function showGame(){
-		check = true;
-
+let arr = new Array();
+function makePuzzle(){
+		var puzzle = new Array();
 		if (document.getElementById('customRadio1').checked) {
 		  rate_value = document.getElementById('customRadio1').value;
 		}else if (document.getElementById('customRadio2').checked) {
@@ -187,40 +178,43 @@ function showGame(){
 		} else if (document.getElementById('customRadio3').checked) {
 		  rate_value = document.getElementById('customRadio3').value;
 		}
-	level= rate_value;
- 	arr=makeNewGame(level);
-	 let sudoku = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+		level= rate_value;
+ 		arr=makeNewGame(level);
+	 	let sudoku = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+		sudokus =  solve(sudoku);
+	for(let row =0;row<81;row++){
+		if(!arr.includes(row)){
+			puzzle[row]=sudokus[row];
+		}else{
+			puzzle[row]=0;
+		}
+	}
+	return puzzle;
 
-	sudokus =  solve(sudoku);
-
+}
+function showGame(){
+	// arr_puzzle_new = viewtable();
+	let arr_puzzle = makePuzzle();
+	// console.log(arr_puzzle);
 	for(let row =0;row <81;row++){
+
 		var x =document.getElementById(`cell-${row+1}`);
+			x.classList.remove('checks');
 		x.value ="";
 		x.removeAttribute("disabled");
 
 	}
 	for(let row=0;row<81;row++){
 				var x =document.getElementById(`cell-${row+1}`);
-				if( sudokus[row]!=0 &&x!=null && !arr.includes(row)){
-					arr_puzzle[row]= sudokus[row];
+				if( arr_puzzle[row]!=0 &&x!=null && !arr.includes(row)){
+					// arr_puzzle[row]= sudokus[row];
 					x.setAttribute("disabled","true");
-					x.value = sudokus[row];
+					x.value = arr_puzzle[row];
 				}else{
-					arr_puzzle[row]=0;
+					x.value='';
 				}
 		}
-	for(let row =0;row<81;row++){
-		if(arr.includes(row)){
-			arr_puzzle[row]=sudokus[row];
-		}else{
-			arr_puzzle[row]=0;
-		}
-		var x = document.getElementById(`cell-${row+1}`);
-		// if(arr.includes(row)){
-			x.classList.remove('checks');
-		// }
-	}
-
+	// resets();
 
 }
 
@@ -228,32 +222,28 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 async function showSolve(){
-	// console.log(sudokus);
-	try{
-		solve(arr_puzzle);
-		sudokus = solve(arr_puzzle).slice();
-		// console.log(solve(arr_puzzle));
-	}catch(err){
-		alert(' Đề Sai');
-		resets();
-		return;
+	arr_puzzle_new = viewtable();
+	for(let cell =0;cell<81;cell++){
+		let checkvalue =arr_puzzle_new[cell];
+			if(checkvalue!=0){
+				arr_puzzle_new[cell] =0;
+				}
+		if(!arr.includes(cell)){
+			arr_puzzle_new[cell]=checkvalue;
+		}else{
+			if(isPossibleNumber(cell,checkvalue,arr_puzzle_new)){
+				try{
+					arr_puzzle_new[cell]=checkvalue;
+					sudokus = solve(arr_puzzle_new).slice();
+				}catch(err){
+					arr_puzzle_new[cell]=0;
+				}
+			}else{
+				arr_puzzle_new[cell] =0;
+				}
+		}			
 	}
 	
-	
-	// console.log(solve(arr_puzzle).slice());
-	// console.log(arr_puzzle);
-	// if(solve(arr_puzzle)){
-
-		// console.log(solve(arr_puzzle));	
-	// sudokus = solve(arr_puzzle).slice();
-
-// }else{
-// 	alert('De sai');
-// 	return;
-// }
-	
-	// console.log(solve(arr_puzzle));
-	// console.log(sudokus);
 	check = false;
 	check_stop=false;
 	let time =0;
@@ -264,6 +254,7 @@ async function showSolve(){
 
 	if(sudokus.length<1){
 		alert('Bạn chưa tạo trò chơi...');
+		return;
 	}else{
 		for(let cell=0;cell<81;cell++){
 			if(check) {
@@ -318,7 +309,22 @@ function checkAll(sudoku){
 	}
 	return true;
 }
+function viewtable(){
+	let arr = new Array();
+	for(let cell =0;cell<81;cell++){
+		let x = document.getElementById(`cell-${cell+1}`);
+		if(x.value != ""){
+			arr[cell]= parseInt(x.value);
+		} else {
+			arr[cell] = 0;
+		}
+	}
+	// console.log(arr);
+	return arr;
+}
+
 async function checks(){
+	// console.log(arr_puzzle);
 	let flag = true;
 	let arr_check = new Array();
 	for(let cell =0 ; cell <81;cell++){
@@ -334,23 +340,23 @@ async function checks(){
 	for(let cell =0;cell<81;cell++){
 		var x =document.getElementById(`cell-${cell+1}`);
 		let checkss = parseInt(x.value);
-		arr_puzzle[cell]=arr_check[cell];
 		if(arr_check[cell]==0){		
 				x.classList.add('checks');
 		}else if(arr.includes(cell)){
-				arr_check[cell]=0;
-				let test = document.getElementById(`cell-${cell+1}`);				
+				arr_check[cell]=0;			
 				if(!isPossibleNumber(cell,checkss,arr_check)){
 					flag=false;
-					test.classList.add('checks');
-					arr_puzzle[cell]= 0;
+					x.classList.add('checks');
 				}else{
-					test.classList.remove('checks');
+					x.classList.remove('checks');
 
 				}
 				arr_check[cell]= checkss;
+				
 		}
+
 	}
+	arr_puzzle_new = viewtable();
 	await sleep(10);
 	var slove = document.getElementById('solves');
 	if (checkAll(arr_check)&&flag) {
@@ -360,10 +366,9 @@ async function checks(){
 		
 		slove.removeAttribute('disabled');
 	}else{
-		slove.setAttribute('disabled','true');
+		// slove.setAttribute('disabled','true');
 	}
 	// console.log(arr_puzzle_new);
-	// console.log(arr_check);
 }
  function isNumberKey(evt)
  {
