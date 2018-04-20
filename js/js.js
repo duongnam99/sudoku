@@ -194,6 +194,7 @@ function makePuzzle(){
 }
 function showGame(){
 	// arr_puzzle_new = viewtable();
+	check=true;
 	let arr_puzzle = makePuzzle();
 	// console.log(arr_puzzle);
 	for(let row =0;row <81;row++){
@@ -222,6 +223,7 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 async function showSolve(){
+
 	arr_puzzle_new = viewtable();
 	for(let cell =0;cell<81;cell++){
 		let x = document.getElementById(`cell-${cell+1}`);
@@ -291,6 +293,8 @@ async function showSolve(){
 		pause.setAttribute('disabled', 'true');
 		var slove = document.getElementById('solves');
 		slove.setAttribute('disabled','true');
+		var resets = document.getElementById('btn-reset');
+		resets.removeAttribute('disabled');
 
 	}
 	// console.log(solve(arr_puzzle));
