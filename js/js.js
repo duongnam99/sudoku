@@ -217,6 +217,7 @@ function showGame(){
 		}
 	// resets();
 
+
 }
 
 function sleep(ms) {
@@ -392,4 +393,6 @@ async function checks(){
  			// arr_puzzle[cell]=0;
  		}
  	}
+ 		var resets = document.getElementById('btn-reset');
+		resets.setAttribute('disabled','true');
  }
