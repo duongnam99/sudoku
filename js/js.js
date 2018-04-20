@@ -224,6 +224,8 @@ function sleep(ms) {
 async function showSolve(){
 	arr_puzzle_new = viewtable();
 	for(let cell =0;cell<81;cell++){
+		let x = document.getElementById(`cell-${cell+1}`);
+		x.classList.remove('checks');
 		let checkvalue =arr_puzzle_new[cell];
 			if(checkvalue!=0){
 				arr_puzzle_new[cell] =0;
